@@ -2,13 +2,23 @@ inputs_def:
   - handle: cerebro
     json_schema:
       contentMediaType: oomol/var
+  - handle: strategy
+    json_schema:
+      enum:
+        - MeanReversion
+        - DualMA
+      ui:options:
+        labels:
+          - MeanReversion
+          - DualMA
+    value: MeanReversion
 outputs_def:
   - handle: cerebro
     description: Output
     json_schema:
       contentMediaType: oomol/var
 ui:
-  default_width: 450
+  default_width: 510.63671875
 executor:
   name: python
   options:

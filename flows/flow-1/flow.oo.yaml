@@ -17,12 +17,17 @@ nodes:
         from_node:
           - node_id: create_cerebro#2
             output_handle: cerebro
+      - handle: strategy
+        value: DualMA
   - task: self::create_cerebro
     title: "Create Cerebro #2"
     node_id: create_cerebro#2
     inputs_from:
       - handle: cash
         value: 100000
+        from_node:
+          - node_id: +value#1
+            output_handle: cash
       - handle: commission
         value: 0.001
   - task: self::plot_show
@@ -37,3 +42,25 @@ nodes:
         from_node:
           - node_id: cerebro_strategy#1
             output_handle: cerebro
+  - values:
+      - handle: cash
+        json_schema:
+          type: number
+          ui:options:
+            step: 1
+          minimum: 100
+        value: 100000
+    title: "Value #1"
+    node_id: +value#1
+  - task: self::strategy_profit
+    title: "Strategy Profit #1"
+    node_id: strategy_profit#1
+    inputs_from:
+      - handle: cerebro
+        from_node:
+          - node_id: plot_show#1
+            output_handle: cerebro
+      - handle: cash
+        from_node:
+          - node_id: +value#1
+            output_handle: cash

@@ -2,12 +2,26 @@
 import typing
 class Inputs(typing.TypedDict):
     cerebro: typing.Any
+    strategy: typing.Literal["MeanReversion", "DualMA"]
 class Outputs(typing.TypedDict):
     cerebro: typing.Any
 #endregion
 
 from oocana import Context
 import backtrader as bt
+
+
+def main(params: Inputs, context: Context) -> Outputs:
+    cerebro = params['cerebro']
+    strategy = params['strategy']
+    if strategy == "MeanReversion":
+        cerebro.addstrategy(MeanReversionStrategy)
+    elif strategy == "DualMA":
+        cerebro.addstrategy(DualMAStrategy)
+    else:
+        raise ValueError(f"Unknown strategy: {strategy}")
+
+    return { "cerebro": cerebro }
 
 class MeanReversionStrategy(bt.Strategy):
     params = (
@@ -31,9 +45,18 @@ class MeanReversionStrategy(bt.Strategy):
             if self.data.close[0] > self.bollinger.top:
                 self.sell(size=10)
 
+class DualMAStrategy(bt.Strategy):
+    params = (('fast', 10), ('slow', 30),)
+    def __init__(self):
+        self.ma_fast = bt.ind.SMA(self.data.close, period=self.params.fast)
+        self.ma_slow = bt.ind.SMA(self.data.close, period=self.params.slow)
+        self.crossover = bt.ind.CrossOver(self.ma_fast, self.ma_slow)
+    
+    def next(self):
+        if not self.position:
+            if self.crossover > 0:
+                self.buy(size=100)
+        else:
+            if self.crossover < 0:
+                self.sell(size=100)
 
-def main(params: Inputs, context: Context) -> Outputs:
-    cerebro = params['cerebro']
-    cerebro.addstrategy(MeanReversionStrategy)  # 添加策略
-
-    return { "cerebro": cerebro }

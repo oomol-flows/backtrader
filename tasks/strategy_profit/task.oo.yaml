@@ -1,15 +1,12 @@
 inputs_def:
-  - handle: df
+  - handle: cerebro
     description: Input
     json_schema:
       contentMediaType: oomol/var
-  - handle: cerebro
+  - handle: cash
     json_schema:
-      contentMediaType: oomol/var
-outputs_def:
-  - handle: cerebro
-    json_schema:
-      contentMediaType: oomol/var
+      type: number
+outputs_def: []
 ui:
   default_width: 450
 executor:
@@ -17,5 +14,5 @@ executor:
   options:
     spawn: false
     entry: __init__.py
-title: Plot Show
+title: Strategy Profit
 icon: ":logos:python:"
