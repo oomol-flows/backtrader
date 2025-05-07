@@ -6,7 +6,8 @@ inputs_def:
   - handle: cash
     json_schema:
       type: number
-outputs_def: []
+outputs_def:
+  []
 ui:
   default_width: 450
 executor:
@@ -15,4 +16,4 @@ executor:
     spawn: false
     entry: __init__.py
 title: Strategy Profit
-icon: ":logos:python:"
+icon: ":twemoji:dollar-banknote:"

@@ -26,4 +26,4 @@ executor:
     spawn: false
     entry: __init__.py
 title: Create Cerebro
-icon: ":logos:python:"
+icon: ":twemoji:gear:"

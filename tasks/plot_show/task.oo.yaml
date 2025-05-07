@@ -18,4 +18,4 @@ executor:
     spawn: false
     entry: __init__.py
 title: Plot Show
-icon: ":logos:python:"
+icon: ":twemoji:bar-chart:"

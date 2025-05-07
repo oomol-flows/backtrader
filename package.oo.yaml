@@ -1,7 +1,14 @@
-version: 0.0.1
+version: 0.0.2
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: poetry add pandas
   bootstrap: |
     npm install
     poetry install --no-root
+icon: ./icon.png
+name: default
+repository: https://github.com/oomol-flows/backtrader
+releaseNotes: init
+displayName: Backtrader
+description: Using the backtrader library to assist investors with stock
+  analysis and backtesting

@@ -64,3 +64,4 @@ nodes:
         from_node:
           - node_id: +value#1
             output_handle: cash
+icon: ":twemoji:rocket:"

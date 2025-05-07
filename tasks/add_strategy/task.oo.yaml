@@ -25,4 +25,4 @@ executor:
     spawn: false
     entry: __init__.py
 title: Add Strategy
-icon: ":logos:python:"
+icon: ":twemoji:brain:"

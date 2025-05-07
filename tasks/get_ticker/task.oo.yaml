@@ -24,4 +24,4 @@ executor:
     spawn: false
     entry: __init__.py
 title: Get Ticker
-icon: ":logos:python:"
+icon: ":twemoji:ab-button-blood-type:"
