@@ -1,1 +1,36 @@
-nodes: []
+nodes:
+  - task:
+      ui:
+        default_width: 450
+      inputs_def:
+        - handle: df
+          description: Input
+          json_schema:
+            contentMediaType: oomol/var
+      outputs_def:
+        - handle: output
+          description: Output
+          json_schema:
+            type: string
+      executor:
+        name: python
+        options:
+          entry: scriptlets/+python#2.py
+    title: "Python #2"
+    icon: ":logos:python:"
+    node_id: +python#2
+    inputs_from:
+      - handle: df
+        from_node:
+          - node_id: get_ticker#1
+            output_handle: df
+  - task: self::get_ticker
+    title: "Get Ticker #1"
+    node_id: get_ticker#1
+    inputs_from:
+      - handle: ticker
+        value: MSFT
+      - handle: start_time
+        value: 2020-01-01T20:47:39+08:00
+      - handle: end_time
+        value: 2025-05-07T20:47:54+08:00

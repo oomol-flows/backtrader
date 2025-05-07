@@ -1,0 +1,31 @@
+{
+  "nodes": {
+    "+python#2": {
+      "contentWidth": 724.979479131747,
+      "rfNode": {
+        "position": {
+          "x": 765,
+          "y": 15
+        }
+      }
+    },
+    "get_ticker#1": {
+      "contentWidth": 523.4494354032719,
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    "+python#3": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 120,
+          "y": 525
+        }
+      }
+    }
+  }
+}

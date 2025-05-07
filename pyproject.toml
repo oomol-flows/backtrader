@@ -8,6 +8,9 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "backtrader (>=1.9.78.123,<2.0.0.0)",
+    "yfinance (>=0.2.59,<0.3.0)",
+    "matplotlib (>=3.10.1,<4.0.0)"
 ]
 
 [tool.poetry]
