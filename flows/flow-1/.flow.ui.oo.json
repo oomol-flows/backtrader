@@ -18,12 +18,21 @@
         }
       }
     },
-    "+python#3": {
+    "cerebro_strategy#1": {
+      "contentWidth": 554.1055278004957,
+      "rfNode": {
+        "position": {
+          "x": 15.406931160389334,
+          "y": 851.4159145055432
+        }
+      }
+    },
+    "+python#6": {
       "contentWidth": 450,
       "rfNode": {
         "position": {
-          "x": 120,
-          "y": 525
+          "x": -707.773959813753,
+          "y": 848
         }
       }
     }

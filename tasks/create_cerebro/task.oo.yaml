@@ -1,0 +1,29 @@
+inputs_def:
+  - handle: cash
+    json_schema:
+      type: number
+      ui:options:
+        step: 1
+      minimum: 100
+    value: 100000
+  - handle: commission
+    json_schema:
+      type: number
+      ui:options:
+        step: 0.001
+      minimum: 0.001
+    value: 0.001
+outputs_def:
+  - handle: cerebro
+    description: Output
+    json_schema:
+      contentMediaType: oomol/var
+ui:
+  default_width: 450
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+title: Create Cerebro
+icon: ":logos:python:"

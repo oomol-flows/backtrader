@@ -1,0 +1,18 @@
+inputs_def:
+  - handle: cerebro
+    json_schema:
+      contentMediaType: oomol/var
+outputs_def:
+  - handle: cerebro
+    description: Output
+    json_schema:
+      contentMediaType: oomol/var
+ui:
+  default_width: 450
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: __init__.py
+title: Add Strategy
+icon: ":logos:python:"

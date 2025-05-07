@@ -1,29 +1,4 @@
 nodes:
-  - task:
-      ui:
-        default_width: 450
-      inputs_def:
-        - handle: df
-          description: Input
-          json_schema:
-            contentMediaType: oomol/var
-      outputs_def:
-        - handle: output
-          description: Output
-          json_schema:
-            type: string
-      executor:
-        name: python
-        options:
-          entry: scriptlets/+python#2.py
-    title: "Python #2"
-    icon: ":logos:python:"
-    node_id: +python#2
-    inputs_from:
-      - handle: df
-        from_node:
-          - node_id: get_ticker#1
-            output_handle: df
   - task: self::get_ticker
     title: "Get Ticker #1"
     node_id: get_ticker#1
@@ -34,3 +9,31 @@ nodes:
         value: 2020-01-01T20:47:39+08:00
       - handle: end_time
         value: 2025-05-07T20:47:54+08:00
+  - task: self::add_strategy
+    title: "Add Strategy #1"
+    node_id: cerebro_strategy#1
+    inputs_from:
+      - handle: cerebro
+        from_node:
+          - node_id: create_cerebro#2
+            output_handle: cerebro
+  - task: self::create_cerebro
+    title: "Create Cerebro #2"
+    node_id: create_cerebro#2
+    inputs_from:
+      - handle: cash
+        value: 100000
+      - handle: commission
+        value: 0.001
+  - task: self::plot_show
+    title: "Plot Show #1"
+    node_id: plot_show#1
+    inputs_from:
+      - handle: df
+        from_node:
+          - node_id: get_ticker#1
+            output_handle: df
+      - handle: cerebro
+        from_node:
+          - node_id: cerebro_strategy#1
+            output_handle: cerebro
