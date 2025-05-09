@@ -70,8 +70,6 @@ class DualMAStrategy(bt.Strategy):
 
 
 # 网格交易策略
-import backtrader as bt
-
 class GridTradingStrategy(bt.Strategy):
     params = (
         ('grid_size', 0.05),  # 网格大小（价格变动百分比）
@@ -149,6 +147,7 @@ class BollingerBandsStrategy(bt.Strategy):
                 self.sell(size=100)
 
 # RSI-MACD组合策略
+# 这个策略有点问题，并不会实现买入和卖出
 class RsiMacdStrategy(bt.Strategy):
     params = (
         ('rsi_period', 14),  # RSI周期
