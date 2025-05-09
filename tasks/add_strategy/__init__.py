@@ -148,6 +148,7 @@ class BollingerBandsStrategy(bt.Strategy):
 
 # RSI-MACD组合策略
 # 这个策略有点问题，并不会实现买入和卖出
+# TODO：需要修改
 class RsiMacdStrategy(bt.Strategy):
     params = (
         ('rsi_period', 14),  # RSI周期
