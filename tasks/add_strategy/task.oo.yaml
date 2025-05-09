@@ -7,10 +7,16 @@ inputs_def:
       enum:
         - MeanReversion
         - DualMA
+        - GridTradingStrategy
+        - BollingerBandsStrategy
+        - RsiMacdStrategy
       ui:options:
         labels:
           - MeanReversion
           - DualMA
+          - GridTradingStrategy
+          - BollingerBandsStrategy
+          - RsiMacdStrategy
     value: MeanReversion
 outputs_def:
   - handle: cerebro

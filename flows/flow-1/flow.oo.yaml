@@ -4,9 +4,9 @@ nodes:
     node_id: get_ticker#1
     inputs_from:
       - handle: ticker
-        value: MSFT
+        value: AAPL
       - handle: start_time
-        value: 2020-01-01T20:47:39+08:00
+        value: 2020-05-07T00:00:00+08:00
       - handle: end_time
         value: 2025-05-07T20:47:54+08:00
   - task: self::add_strategy
@@ -18,7 +18,7 @@ nodes:
           - node_id: create_cerebro#2
             output_handle: cerebro
       - handle: strategy
-        value: DualMA
+        value: GridTradingStrategy
   - task: self::create_cerebro
     title: "Create Cerebro #2"
     node_id: create_cerebro#2

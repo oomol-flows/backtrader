@@ -4,26 +4,26 @@
       "contentWidth": 523.4494354032719,
       "rfNode": {
         "position": {
-          "x": 1012.5,
+          "x": 1073,
           "y": 0
         }
       }
     },
     "cerebro_strategy#1": {
-      "contentWidth": 554.1055278004957,
+      "contentWidth": 419.7007466205894,
       "rfNode": {
         "position": {
-          "x": 997,
-          "y": 839
+          "x": 1124.5,
+          "y": 849
         }
       }
     },
     "create_cerebro#2": {
-      "contentWidth": 450,
+      "contentWidth": 525.7808249974815,
       "rfNode": {
         "position": {
           "x": 481,
-          "y": 839
+          "y": 849
         }
       }
     },
@@ -31,8 +31,8 @@
       "contentWidth": 724.979479131747,
       "rfNode": {
         "position": {
-          "x": 1617,
-          "y": 265.5
+          "x": 1662,
+          "y": 273
         }
       }
     },
@@ -41,15 +41,15 @@
       "rfNode": {
         "position": {
           "x": 0,
-          "y": 1125.75
+          "y": 1135.75
         }
       }
     },
     "strategy_profit#1": {
       "rfNode": {
         "position": {
-          "x": 2408,
-          "y": 726.25
+          "x": 2453,
+          "y": 734.25
         }
       }
     }
