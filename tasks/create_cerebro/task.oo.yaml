@@ -12,7 +12,7 @@ inputs_def:
       ui:options:
         step: 0.001
       minimum: 0.001
-    value: 0.001
+    value: 0.01
 outputs_def:
   - handle: cerebro
     description: Output
