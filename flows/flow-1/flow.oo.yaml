@@ -6,7 +6,7 @@ nodes:
       - handle: ticker
         value: AAPL
       - handle: start_time
-        value: 2024-08-01T22:31:40+08:00
+        value: 2024-02-01T22:31:40+08:00
       - handle: end_time
         value: 2025-05-07T20:47:54+08:00
   - task: self::add_strategy
@@ -18,7 +18,7 @@ nodes:
           - node_id: create_cerebro#2
             output_handle: cerebro
       - handle: strategy
-        value: MeanReversion
+        value: DualMA
   - task: self::create_cerebro
     title: "Create Cerebro #2"
     node_id: create_cerebro#2
