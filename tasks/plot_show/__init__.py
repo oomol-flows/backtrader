@@ -98,8 +98,9 @@ def main(params: Inputs, context: Context) -> Outputs:
     
     # 使用 Solarized Light 风格绘制图表
     figs = cerebro.plot(style='candlestick', 
-                       barup='#22c55e', bardown='#ef4444',      # 柔和的通用绿色/红色
+                       barup='#22c55e', bardown='#ef4444',      # 柔和的通用绿色/红色 (K线)
                        volup='#22c55e', voldown='#ef4444',      # 成交量对应颜色
+                       plotdist=0.02,                           # 增加信号标记间距
                        figsize=(12, 8),                         # 适中尺寸图表
                        iplot=False,                             # 确保使用matplotlib后端
                        volume=True,                             # 显示成交量
@@ -114,12 +115,80 @@ def main(params: Inputs, context: Context) -> Outputs:
                     fig.set_dpi(200)
                     # 调整子图间距
                     fig.subplots_adjust(hspace=0.3, wspace=0.1)
+                    
+                    # 自定义买卖信号颜色
+                    for ax in fig.get_axes():
+                        for line in ax.get_lines():
+                            # 检查线条标签，设置买卖信号颜色
+                            if hasattr(line, '_label'):
+                                label = str(line._label).lower()
+                                if 'buy' in label or '买入' in label:
+                                    line.set_color('#268bd2')  # Solarized blue for buy signals
+                                    line.set_marker('^')
+                                    line.set_markersize(10)
+                                    line.set_markerfacecolor('#268bd2')
+                                    line.set_markeredgecolor('#073642')
+                                    line.set_markeredgewidth(1.5)
+                                elif 'sell' in label or '卖出' in label:
+                                    line.set_color('#d33682')  # Solarized magenta for sell signals
+                                    line.set_marker('v')
+                                    line.set_markersize(10)
+                                    line.set_markerfacecolor('#d33682')
+                                    line.set_markeredgecolor('#073642')
+                                    line.set_markeredgewidth(1.5)
+                        
+                        # 查找并设置买卖信号标记
+                        for collection in ax.collections:
+                            if hasattr(collection, '_label'):
+                                label = str(collection._label).lower()
+                                if 'buy' in label or '买入' in label:
+                                    collection.set_color('#268bd2')  # Solarized blue
+                                    collection.set_edgecolors('#073642')
+                                    collection.set_linewidths(1.5)
+                                elif 'sell' in label or '卖出' in label:
+                                    collection.set_color('#d33682')  # Solarized magenta
+                                    collection.set_edgecolors('#073642')
+                                    collection.set_linewidths(1.5)
+                    
                     # 优化显示
                     fig.tight_layout()
             else:
                 # 如果直接是图表对象
                 fig_list.set_dpi(200)
                 fig_list.subplots_adjust(hspace=0.3, wspace=0.1)
+                
+                # 同样的买卖信号颜色设置
+                for ax in fig_list.get_axes():
+                    for line in ax.get_lines():
+                        if hasattr(line, '_label'):
+                            label = str(line._label).lower()
+                            if 'buy' in label or '买入' in label:
+                                line.set_color('#268bd2')  # Solarized blue
+                                line.set_marker('^')
+                                line.set_markersize(10)
+                                line.set_markerfacecolor('#268bd2')
+                                line.set_markeredgecolor('#073642')
+                                line.set_markeredgewidth(1.5)
+                            elif 'sell' in label or '卖出' in label:
+                                line.set_color('#d33682')  # Solarized magenta
+                                line.set_marker('v')
+                                line.set_markersize(10)
+                                line.set_markerfacecolor('#d33682')
+                                line.set_markeredgecolor('#073642')
+                                line.set_markeredgewidth(1.5)
+                    
+                    for collection in ax.collections:
+                        if hasattr(collection, '_label'):
+                            label = str(collection._label).lower()
+                            if 'buy' in label or '买入' in label:
+                                collection.set_color('#268bd2')  # Solarized blue
+                                collection.set_edgecolors('#073642')
+                                collection.set_linewidths(1.5)
+                            elif 'sell' in label or '卖出' in label:
+                                collection.set_color('#d33682')  # Solarized magenta
+                                collection.set_edgecolors('#073642')
+                                collection.set_linewidths(1.5)
+                
                 fig_list.tight_layout()
     
     return {'cerebro': cerebro}
