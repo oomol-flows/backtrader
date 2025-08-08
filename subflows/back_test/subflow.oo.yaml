@@ -1,0 +1,131 @@
+nodes:
+  - task: self::get_ticker
+    title: "Get Ticker #1"
+    node_id: get_ticker#1
+    inputs_from:
+      - handle: ticker
+        value: AAPL
+        from_flow:
+          - input_handle: ticker
+      - handle: start_time
+        value: 2024-02-01T22:31:40+08:00
+        from_flow:
+          - input_handle: start_time
+      - handle: end_time
+        value: 2025-05-07T20:47:54+08:00
+        from_flow:
+          - input_handle: end_time
+  - task: self::add_strategy
+    title: "Add Strategy #1"
+    node_id: cerebro_strategy#1
+    inputs_from:
+      - handle: cerebro
+        from_node:
+          - node_id: create_cerebro#2
+            output_handle: cerebro
+      - handle: strategy
+        value: DualMA
+        from_flow:
+          - input_handle: strategy
+  - task: self::create_cerebro
+    title: "Create Cerebro #2"
+    node_id: create_cerebro#2
+    inputs_from:
+      - handle: cash
+        value: 100000
+        from_flow:
+          - input_handle: cash
+        from_node:
+          []
+      - handle: commission
+        value: 0.001
+        from_flow:
+          - input_handle: commission
+  - task: self::plot_show
+    title: "Plot Show #1"
+    node_id: plot_show#1
+    inputs_from:
+      - handle: df
+        from_node:
+          - node_id: get_ticker#1
+            output_handle: df
+      - handle: cerebro
+        from_node:
+          - node_id: cerebro_strategy#1
+            output_handle: cerebro
+  - task: self::strategy_profit
+    title: "Strategy Profit #1"
+    node_id: strategy_profit#1
+    inputs_from:
+      - handle: cerebro
+        from_node:
+          - node_id: plot_show#1
+            output_handle: cerebro
+      - handle: cash
+        from_flow:
+          - input_handle: cash
+        from_node:
+          []
+icon: ":twemoji:test-tube:"
+inputs_def:
+  - handle: ticker
+    json_schema:
+      type: string
+    nullable: false
+    description: Input
+    executor_name: python
+  - handle: start_time
+    json_schema:
+      type: string
+      format: date-time
+    nullable: false
+    value: 2024-02-01T22:31:40+08:00
+    executor_name: python
+  - handle: end_time
+    json_schema:
+      type: string
+      format: date-time
+    nullable: false
+    value: 2025-05-07T20:47:54+08:00
+    executor_name: python
+  - handle: strategy
+    json_schema:
+      enum:
+        - MeanReversion
+        - DualMA
+        - GridTradingStrategy
+        - BollingerBandsStrategy
+        - RsiMacdStrategy
+      ui:options:
+        labels:
+          - MeanReversion
+          - DualMA
+          - GridTradingStrategy
+          - BollingerBandsStrategy
+          - RsiMacdStrategy
+    nullable: false
+    value: DualMA
+    executor_name: python
+  - handle: cash
+    json_schema:
+      type: number
+      ui:options:
+        step: 1
+      minimum: 100
+    nullable: false
+    value: 100000
+    executor_name: python
+  - handle: commission
+    json_schema:
+      type: number
+      ui:options:
+        step: 0.001
+      minimum: 0.001
+    nullable: false
+    value: 0.001
+    executor_name: python
+forward_previews:
+  - plot_show#1
+  - strategy_profit#1
+title: Back test
+description: 这是对股票进行回归测试工具。股票代码是必填项目，其他选填

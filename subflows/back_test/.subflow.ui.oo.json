@@ -1,0 +1,66 @@
+{
+  "nodes": {
+    "get_ticker#1": {
+      "contentWidth": 523.4494354032719,
+      "rfNode": {
+        "position": {
+          "x": 1078,
+          "y": 0
+        }
+      }
+    },
+    "cerebro_strategy#1": {
+      "contentWidth": 419.7007466205894,
+      "rfNode": {
+        "position": {
+          "x": 1129.5,
+          "y": 338
+        }
+      }
+    },
+    "create_cerebro#2": {
+      "contentWidth": 525.7808249974815,
+      "rfNode": {
+        "position": {
+          "x": 486,
+          "y": 338
+        }
+      }
+    },
+    "plot_show#1": {
+      "contentWidth": 671.9892669211645,
+      "rfNode": {
+        "position": {
+          "x": 1667,
+          "y": 93
+        }
+      }
+    },
+    "strategy_profit#1": {
+      "rfNode": {
+        "position": {
+          "x": 2405,
+          "y": 223.25
+        }
+      }
+    }
+  },
+  "pseudoNodes": {
+    "input": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": 330.75
+        }
+      }
+    },
+    "output": {
+      "rfNode": {
+        "position": {
+          "x": 2633.945997216804,
+          "y": 475.75
+        }
+      }
+    }
+  }
+}
