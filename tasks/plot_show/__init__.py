@@ -48,12 +48,12 @@ def setup_gentle_theme():
         'xtick.major.size': 6,
         'ytick.major.size': 6,
         
-        # 线条样式 - Solarized 强调色 + 通用红绿色
+        # 线条样式 - Solarized 强调色 + 更柔和的红绿色
         'lines.linewidth': 2.0,
         'axes.prop_cycle': plt.cycler('color', [
             '#268bd2',  # Solarized blue (主线)
-            '#ef4444',  # 柔和通用红色 (下跌/卖出)
-            '#22c55e',  # 柔和通用绿色 (上涨/买入)
+            '#e57373',  # 更柔和的红色 (下跌/卖出)
+            '#81c784',  # 更柔和的绿色 (上涨/买入)
             '#d33682',  # Solarized magenta
             '#cb4b16',  # Solarized orange
             '#b58900',  # Solarized yellow
@@ -98,8 +98,8 @@ def main(params: Inputs, context: Context) -> Outputs:
     
     # 使用 Solarized Light 风格绘制图表
     figs = cerebro.plot(style='candlestick', 
-                       barup='#22c55e', bardown='#ef4444',      # 柔和的通用绿色/红色 (K线)
-                       volup='#22c55e', voldown='#ef4444',      # 成交量对应颜色
+                       barup='#81c784', bardown='#e57373',      # 更柔和的绿色/红色 (K线)
+                       volup='#81c784', voldown='#e57373',      # 成交量对应颜色
                        plotdist=0.02,                           # 增加信号标记间距
                        figsize=(12, 8),                         # 适中尺寸图表
                        iplot=False,                             # 确保使用matplotlib后端
