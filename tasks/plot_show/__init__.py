@@ -24,7 +24,7 @@ def setup_gentle_theme():
         # 高清显示设置
         'figure.dpi': 200,              # 进一步提高显示DPI
         'savefig.dpi': 400,             # 超高清保存DPI
-        'figure.figsize': (16, 10),     # 进一步增大图表尺寸
+        'figure.figsize': (12, 8),      # 调整为稍小的图表尺寸
         
         # 网格线配置 - Solarized
         'axes.grid': True,
@@ -100,7 +100,7 @@ def main(params: Inputs, context: Context) -> Outputs:
     figs = cerebro.plot(style='candlestick', 
                        barup='#22c55e', bardown='#ef4444',      # 柔和的通用绿色/红色
                        volup='#22c55e', voldown='#ef4444',      # 成交量对应颜色
-                       figsize=(16, 10),                        # 大尺寸图表
+                       figsize=(12, 8),                         # 适中尺寸图表
                        iplot=False,                             # 确保使用matplotlib后端
                        volume=True,                             # 显示成交量
                        zdown=False)                             # 优化显示效果
