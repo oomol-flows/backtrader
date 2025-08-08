@@ -14,70 +14,72 @@ import matplotlib.style as mplstyle
 
 
 def setup_gentle_theme():
-    """设置柔和的主题配色，适合暗色和亮色背景"""
-    # 使用柔和的颜色配置
+    """设置 Solarized Light 主题配色"""
+    # Solarized Light 颜色方案
     plt.rcParams.update({
-        # 图表背景
-        'figure.facecolor': '#ffffff',  # 纯白色背景
-        'axes.facecolor': '#ffffff',    # 纯白色图表区域
+        # 图表背景 - Solarized Light
+        'figure.facecolor': '#fdf6e3',  # Solarized base3 (背景)
+        'axes.facecolor': '#fdf6e3',    # Solarized base3 (图表区域)
         
         # 高清显示设置
         'figure.dpi': 200,              # 进一步提高显示DPI
         'savefig.dpi': 400,             # 超高清保存DPI
         'figure.figsize': (16, 10),     # 进一步增大图表尺寸
         
-        # 网格线配置
+        # 网格线配置 - Solarized
         'axes.grid': True,
-        'grid.color': '#e1e4e8',        # 更浅的灰色网格
+        'grid.color': '#eee8d5',        # Solarized base2 (浅色网格)
         'grid.alpha': 0.8,
-        'grid.linewidth': 0.8,          # 稍微加粗网格线
+        'grid.linewidth': 0.8,
         
-        # 坐标轴 - 使用深色确保可见
-        'axes.edgecolor': '#1f2328',    # 深灰色边框
-        'axes.linewidth': 1.5,          # 加粗坐标轴线
-        'axes.labelcolor': '#1f2328',   # 深色标签，确保可见
-        'axes.titlecolor': '#1f2328',   # 深色标题
+        # 坐标轴 - Solarized
+        'axes.edgecolor': '#93a1a1',    # Solarized base1 (边框)
+        'axes.linewidth': 1.5,
+        'axes.labelcolor': '#586e75',   # Solarized base01 (标签)
+        'axes.titlecolor': '#073642',   # Solarized base02 (标题)
         
-        # 刻度 - 使用深色确保可见
-        'xtick.color': '#1f2328',       # 深色刻度
-        'ytick.color': '#1f2328',
-        'xtick.labelsize': 14,          # 增大刻度字体
+        # 刻度 - Solarized
+        'xtick.color': '#586e75',       # Solarized base01 (刻度)
+        'ytick.color': '#586e75',
+        'xtick.labelsize': 14,
         'ytick.labelsize': 14,
-        'xtick.major.width': 1.2,       # 加粗刻度线
+        'xtick.major.width': 1.2,
         'ytick.major.width': 1.2,
-        'xtick.major.size': 6,          # 增大刻度长度
+        'xtick.major.size': 6,
         'ytick.major.size': 6,
         
-        # 线条样式 - 使用对比度高的颜色
-        'lines.linewidth': 2.0,         # 加粗线条
+        # 线条样式 - Solarized 强调色 + 通用红绿色
+        'lines.linewidth': 2.0,
         'axes.prop_cycle': plt.cycler('color', [
-            '#0969da',  # 蓝色 (主线)
-            '#d1242f',  # 红色 (卖出)
-            '#1a7f37',  # 绿色 (买入)
-            '#8250df',  # 紫色
-            '#bc4c00',  # 橙色
-            '#656d76',  # 灰色
+            '#268bd2',  # Solarized blue (主线)
+            '#ef4444',  # 柔和通用红色 (下跌/卖出)
+            '#22c55e',  # 柔和通用绿色 (上涨/买入)
+            '#d33682',  # Solarized magenta
+            '#cb4b16',  # Solarized orange
+            '#b58900',  # Solarized yellow
+            '#2aa198',  # Solarized cyan
+            '#6c71c4',  # Solarized violet
         ]),
         
-        # 字体 - 增大字体并使用深色
-        'font.size': 14,                # 增大基础字体
-        'font.weight': 'normal',        # 正常字重
-        'axes.titlesize': 18,           # 增大标题字体
-        'axes.labelsize': 16,           # 增大轴标签字体
-        'legend.fontsize': 14,          # 增大图例字体
-        'text.color': '#1f2328',        # 深色文字
+        # 字体 - Solarized
+        'font.size': 14,
+        'font.weight': 'normal',
+        'axes.titlesize': 18,
+        'axes.labelsize': 16,
+        'legend.fontsize': 14,
+        'text.color': '#073642',        # Solarized base02 (深色文字)
         
-        # 图例 - 确保可见
+        # 图例 - Solarized
         'legend.frameon': True,
-        'legend.facecolor': '#ffffff',
-        'legend.edgecolor': '#d0d7de',
-        'legend.framealpha': 1.0,       # 完全不透明
-        'legend.shadow': True,          # 添加阴影增强可见度
+        'legend.facecolor': '#fdf6e3',  # Solarized base3 (背景)
+        'legend.edgecolor': '#93a1a1',  # Solarized base1 (边框)
+        'legend.framealpha': 1.0,
+        'legend.shadow': True,
         
         # 整体样式
         'figure.autolayout': True,
         'savefig.bbox': 'tight',
-        'savefig.facecolor': '#ffffff',
+        'savefig.facecolor': '#fdf6e3',  # Solarized base3
         'savefig.format': 'png',
         'savefig.transparent': False,
     })
@@ -94,23 +96,30 @@ def main(params: Inputs, context: Context) -> Outputs:
     cerebro.adddata(data)                # 添加数据源
     cerebro.run()  # 执行策略模拟[1,4](@ref)
     
-    # 使用高清参数绘制图表
+    # 使用 Solarized Light 风格绘制图表
     figs = cerebro.plot(style='candlestick', 
-                       barup='#1a7f37', bardown='#cf222e',
-                       volup='#1a7f37', voldown='#cf222e',
-                       figsize=(16, 10),      # 大尺寸图表
-                       iplot=False,           # 确保使用matplotlib后端
-                       volume=True,           # 显示成交量
-                       zdown=False)           # 优化显示效果
+                       barup='#22c55e', bardown='#ef4444',      # 柔和的通用绿色/红色
+                       volup='#22c55e', voldown='#ef4444',      # 成交量对应颜色
+                       figsize=(16, 10),                        # 大尺寸图表
+                       iplot=False,                             # 确保使用matplotlib后端
+                       volume=True,                             # 显示成交量
+                       zdown=False)                             # 优化显示效果
     
     # 进一步优化图表显示
     if figs:
-        for fig in figs:
-            # 设置高DPI
-            fig.set_dpi(200)
-            # 调整子图间距
-            fig.subplots_adjust(hspace=0.3, wspace=0.1)
-            # 优化显示
-            fig.tight_layout()
+        for fig_list in figs:
+            if isinstance(fig_list, list):
+                for fig in fig_list:
+                    # 设置高DPI
+                    fig.set_dpi(200)
+                    # 调整子图间距
+                    fig.subplots_adjust(hspace=0.3, wspace=0.1)
+                    # 优化显示
+                    fig.tight_layout()
+            else:
+                # 如果直接是图表对象
+                fig_list.set_dpi(200)
+                fig_list.subplots_adjust(hspace=0.3, wspace=0.1)
+                fig_list.tight_layout()
     
     return {'cerebro': cerebro}
